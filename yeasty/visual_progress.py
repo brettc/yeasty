@@ -1,6 +1,10 @@
 import pygame
+import logging
+log = logging.getLogger("main")
+
 from pygame.locals import *
 from pygame.color import *
+import pygame.image as image
 
 display_flags = 0
 display_size = (800,600)
@@ -10,12 +14,13 @@ class Progress(object):
     def __init__(self, every=1):
         self.every = every
         self.count = 0
+        self.snapshot_count = 1
 
         pygame.init()
         self.screen = pygame.display.set_mode(display_size, display_flags)
         self.width, self.height = self.screen.get_size()
 
-        clock = pygame.time.Clock()
+        # clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 16)
 
         self.viz = Visualisation()
@@ -48,6 +53,7 @@ class Progress(object):
         pass
 
     def draw(self, sim):
+        snapshot = False
         for event in pygame.event.get():
             if event.type == QUIT:
                 self.running = False
@@ -56,23 +62,35 @@ class Progress(object):
                     self.running = False
                 elif event.key == K_SPACE:
                     self.paused = not self.paused
-            elif event.type == MOUSEBUTTONDOWN:
-                self.running = False
+                elif event.key == K_RETURN:
+                    snapshot = True
+            # elif event.type == MOUSEBUTTONDOWN:
+            #     self.running = False
 
         ### Clear screen
         self.screen.fill(THECOLORS["black"])
         self.viz.render(self.screen, sim)
+
+        if snapshot:
+            image_name = 'snapshot-{:02d}.bmp'.format(self.snapshot_count)
+            log.info('saving snapshot: %s', image_name)
+            self.snapshot_count += 1
+            image.save(self.screen, image_name)
 
         ### Flip screen
         # self.screen.blit(font.render("Press left mouse button and drag to interact",
                                      # 1, THECOLORS["darkgrey"]),
                                      # (5,self.height - 35))
         self.screen.blit(
-            self.font.render("frame: %d" % self.count, 1, THECOLORS["darkgrey"]),
-                         (5,self.height - 20))
+            self.font.render(
+                "frame: %03d | <space> to pause | <enter> to snapshot" % self.count, 
+                1, 
+                THECOLORS["darkgrey"]),
+            (5, self.height - 20))
+
         if self.paused:
             self.screen.blit(
-            self.font.render("PAUSED (press space)" , 1, THECOLORS["darkgrey"]),
-                         (5,self.height - 40))
+                self.font.render("PAUSED (press space)" , 1, THECOLORS["darkgrey"]),
+                (5, self.height - 40))
         #
         pygame.display.flip()
