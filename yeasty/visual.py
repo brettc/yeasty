@@ -4,12 +4,9 @@ from pygame.color import Color
 from pymunk import Vec2d
 import random
 
-# Get some funky colors
+# Get some colors and randomize their order
 COLORS = pygame.color.THECOLORS.items()
 random.shuffle(COLORS)
-
-# TODO push / pop for state
-
 
 class Visualisation(object):
     def __init__(self):
@@ -123,11 +120,3 @@ class Visualisation(object):
             pv2 = c.b.position + c.anchr2.rotated(c.b.angle)
             self.line(pv1, pv2)
 
-            # Display the stressed joints
-            # stressed = Color(255, 0, 0, 200)
-            # if not b.growing:
-                # if (ja - jb).length > .1:
-                    # self.viz.fill_color = stressed
-                    # p = ja + (jb - ja)/2.0
-                    # self.viz.circle(p, .25, True)
-                    # self.viz.outline_color = ok
