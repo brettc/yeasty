@@ -32,6 +32,10 @@ class Simulation(object):
         for c in self.cells:
             c.step()
 
+    @property
+    def cell_count(self):
+        return len(self.cells)
+
     def add_bond(self, b):
         self.bonds.add(b)
 
@@ -45,7 +49,8 @@ class Simulation(object):
 
     def run(self, callbacks, progress):
         if progress:
-            progress.begin(self)
+            for p in progress:
+                p.begin(self)
 
         StartCell(self, 0)
 
@@ -55,13 +60,15 @@ class Simulation(object):
                 for c in callbacks:
                     c(self)
             if progress:
-                progress.update(self)
-                while progress.paused:
-                    progress.interact(self)
-                if progress.running is False:
-                    log.info("User interrupted simulation, ending it ...")
-                    raise SimulationInterrupt
+                for p in progress:
+                    p.update(self)
+                    while p.paused:
+                        p.interact(self)
+                    if p.running is False:
+                        log.info("User interrupted simulation, ending it ...")
+                        raise SimulationInterrupt
             self.time_step += 1
 
         if progress:
-            progress.end(self)
+            for p in progress:
+                p.end(self)
