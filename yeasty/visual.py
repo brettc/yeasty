@@ -101,7 +101,7 @@ class Visualisation(object):
             self.fill_color = COLORS[c.color][1]
             self.circle(c.body.position, c.shape.radius, True)
             if c.dead:
-                self.fill_color = Color(55, 55, 55)
+                self.fill_color = Color(255, 0, 0)
                 self.circle(c.body.position, c.shape.radius * .5, True)
             v = Vec2d(c.shape.radius, 0)
             v.rotate(c.body.angle)
