@@ -2,3 +2,4 @@
 *.output
 .ropeproject
 *.bmp
+results/.ipynb_checkpoints
