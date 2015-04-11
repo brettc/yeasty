@@ -16,7 +16,7 @@ class Treatment(object):
         self.parameters = parameters
         self.simulations = []
 
-    def run(self, e_analyses, e_callbacks, progress=None):
+    def run(self, e_analyses, e_callbacks, progress=[]):
 
         # Set up and run the treatment_analyses
         t_analyses = []
@@ -105,7 +105,7 @@ class Experiment(object):
         if issubclass(analyses_cls, ExperimentAnalysis):
             self.experiment_analyses.append(analyses_cls)
 
-    def run(self, progress):
+    def run(self, progress=[]):
         callbacks = []
         e_analyses = []
         for cls in self.experiment_analyses:

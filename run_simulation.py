@@ -4,7 +4,7 @@ log = logging.getLogger("main")
 import sys
 from optparse import OptionParser
 from yeasty import config, script, context, simulation
-from yeasty.visual_progress import Progress
+from yeasty.visual_progress import Progress as VisualProgress
 
 
 def configure_options():
@@ -20,8 +20,12 @@ def configure_options():
         help="Clean any previous output")
     parser.add_option(
         "-g", "--graphics=",
-        type="int", dest="graphics", default=0, metavar="N",
-        help="show graphics every N steps")
+        action="store_true", dest="graphics", 
+        help="show graphics")
+    parser.add_option(
+        "-u", "--updates",
+        type="int", dest="updates", default=100, metavar="N",
+        help="show updates every N steps")
 
     return parser
 
@@ -44,19 +48,20 @@ class TextProgress(object):
         self.paused = False
 
     def begin(self, sim):
-        print 'begin-----'
+        log.info("Begin {0.treatment.name}, {0.replicate} -----------".format(sim))
         self.count = 0
 
     def update(self, sim):
         if self.count % self.every == 0:
-            print 'g:', self.count, 'cells:', len(sim.cells)
+            text = "\tTreat:{0.treatment.name}, Rep:{0.replicate}, Step:{0.time_step}, Cell Count:{0.cell_count}".format(sim)
+            log.info(text)
         self.count += 1
 
     def interact(self, sim):
         pass
 
     def end(self, sim):
-        pass
+        log.info("----------------------")
 
 def main():
     configure_logging()
@@ -86,13 +91,12 @@ def main():
     if spt.load(script_path):
         # TODO cfg.validate()
         # Override settings
-        if options.graphics > 0:
-            p = Progress(options.graphics)
-        else:
-            p = TextProgress()
+        progress = [TextProgress(options.updates)]
+        if options.graphics:
+            progress.append(VisualProgress(options.updates))
 
         try:
-            cfg.experiment.run(p)
+            cfg.experiment.run(progress)
             return 0
 
         except KeyboardInterrupt:
