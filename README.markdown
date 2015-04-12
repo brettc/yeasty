@@ -1,4 +1,4 @@
-## Yeasty: Simulating Multicellular Growth of Yeast
+## Yeasty: Multicellular Growth in Multicellular Yeast
 
 The yeast *Saccharomyces cerevisiae* can evolve a simple form of multicellularity in lab conditions which gravity-select for larger clumps ([1][mcell2],[2][mcell2]). A analysis of this growth suggests that the geometry of this growth has important evolutionary consequences, and can explain why an initial division of reproductive labour arises ([3][geometry]). The division of labour exhibits itself as an increased cell-death rate within the clump. Dead cells provides weak points, allowing the clusters to split, increasing the space for further replication. So increased cell death actually increases the overall reproductive rate of cells and clusters.
 
