@@ -23,7 +23,7 @@ p.max_joint_distortion = 30
 p.max_dead_joint_distortion = 5
 p.life_expectancy = 5000
 p.max_cells = 400
-add_treatment('distort_10', p, replicates=10)
+add_treatment('simple', p, replicates=10)
 ```
 This runs 10 simulations with the parameter settings shown. To run this:
 
