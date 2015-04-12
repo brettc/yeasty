@@ -94,3 +94,7 @@ The programming was done in [python][python] by [Brett Calcott][brettc], in cons
 [mcell1]: http://www.pnas.org/content/109/5/1595.abstract
 
 [mcell2]: http://www.nature.com/ncomms/2015/150120/ncomms7102/full/ncomms7102.html
+
+[brettc]: http://www.brettcalcott.com
+
+[python]: http://www.python.org
