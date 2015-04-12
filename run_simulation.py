@@ -4,8 +4,11 @@ log = logging.getLogger("main")
 import sys
 from optparse import OptionParser
 from yeasty import config, script, context, simulation
-from yeasty.visual_progress import Progress as VisualProgress
 
+try:
+    from yeasty.visual_progress import Progress as VisualProgress
+except:
+    VisualProgress = None
 
 def configure_options():
     usage = """usage: python %prog [options] <foldername>"""
@@ -93,7 +96,10 @@ def main():
         # Override settings
         progress = [TextProgress(options.updates)]
         if options.graphics:
-            progress.append(VisualProgress(options.updates))
+            if VisualProgress is None:
+                log.warning("Can't load graphics -- you probably need to install pygame")
+            else:
+                progress.append(VisualProgress(options.updates))
 
         try:
             cfg.experiment.run(progress)
