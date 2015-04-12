@@ -98,3 +98,5 @@ The programming was done in [python][python] by [Brett Calcott][brettc], in cons
 [brettc]: http://www.brettcalcott.com
 
 [python]: http://www.python.org
+
+[chipmunk]: https://chipmunk-physics.net/
