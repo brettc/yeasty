@@ -1,14 +1,13 @@
 ## Yeasty: Simulating the Growth of Multicellular Yeast
 
-<img src="https://raw.githubusercontent.com/brettc/yeasty/master/images/yeasty1.jpg" width=240 />
+<img src="https://raw.githubusercontent.com/brettc/yeasty/master/images/yeasty1.jpg" height=150 />
+<img src="https://raw.githubusercontent.com/brettc/yeasty/master/images/snapshot-01.jpg" width=150 >
 
 The yeast *Saccharomyces cerevisiae* can evolve a simple form of multicellularity in lab conditions which gravity-select for larger clumps ([1][mcell2],[2][mcell2]). A analysis of this growth suggests that the geometry of this growth has important evolutionary consequences, and can explain why an initial division of reproductive labour arises ([3][geometry]). The division of labour exhibits itself as an increased cell-death rate within the clump. Dead cells provides weak points, allowing the clusters to split, increasing the space for further replication. So increased cell death actually increases the overall reproductive rate of cells and clusters.
 
 This aim of this simulation it to provide a simple *in-silico* visual laboratory for exploring the parameters that control cluster growth and splitting (there is no selection in this model, yet). The simulation uses simple physics to model two-dimensional cluster growth, and provides an optional visual display. Simple configuration files can provide different sets of parameters, multiple replicates can be run, and the results can be recorded for analysis. This is a work in progress, and more work is needed to capture some of the more interesting dynamics.
 
-<!-- <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE -->
-<!-- " target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg"  -->
-<!-- alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a> -->
+You can see what the simulations look like on YouTube, [here][sim1], and [here][sim2].
 
 ### Installation
 
@@ -69,9 +68,9 @@ To really play with this simulation, and write your own experiments, you're goin
 
 A configuration file allows you to create different "treatments" which vary these parameters, and this run multiple related simulations from one configuration file. To collect the results, you need to load an "analysis" plugin. A few examples are currently provided, such as one that records the final number of clusters produced at the end of each simulation in a `.csv` file.
 
-### Contact
+### About Me
 
-Contact me (Brett Calcott) with any questions: brett.calcott@gmail.com
+I'm a philosopher of science and a programmer, interested in the evolution of complexity. My website is [here][brettc].
 
 ### Credits
 
@@ -102,3 +101,7 @@ The programming was done in [python][python] by [Brett Calcott][brettc], in cons
 [python]: http://www.python.org
 
 [chipmunk]: https://chipmunk-physics.net/
+
+[sim1]: https://www.youtube.com/watch?v=b7PHC_VDZ6c
+
+[sim2]: https://www.youtube.com/watch?v=XrX1gnfbuak 
