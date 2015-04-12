@@ -1,5 +1,7 @@
 ## Yeasty: Simulating the Growth of Multicellular Yeast
 
+<img src="https://raw.githubusercontent.com/brettc/yeasty/master/images/yeasty1.jpg" width=240 />
+
 The yeast *Saccharomyces cerevisiae* can evolve a simple form of multicellularity in lab conditions which gravity-select for larger clumps ([1][mcell2],[2][mcell2]). A analysis of this growth suggests that the geometry of this growth has important evolutionary consequences, and can explain why an initial division of reproductive labour arises ([3][geometry]). The division of labour exhibits itself as an increased cell-death rate within the clump. Dead cells provides weak points, allowing the clusters to split, increasing the space for further replication. So increased cell death actually increases the overall reproductive rate of cells and clusters.
 
 This aim of this simulation it to provide a simple *in-silico* visual laboratory for exploring the parameters that control cluster growth and splitting (there is no selection in this model, yet). The simulation uses simple physics to model two-dimensional cluster growth, and provides an optional visual display. Simple configuration files can provide different sets of parameters, multiple replicates can be run, and the results can be recorded for analysis. This is a work in progress, and more work is needed to capture some of the more interesting dynamics.
